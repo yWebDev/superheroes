@@ -9,6 +9,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class AntiHeroDTO {
+
     private UUID id;
 
     @NotNull(message = "First Name is required")
@@ -17,4 +18,8 @@ public class AntiHeroDTO {
     private String lastName;
     private String house;
     private String knownAs;
+
+    public UUID getId() {
+        return id;
+    }
 }

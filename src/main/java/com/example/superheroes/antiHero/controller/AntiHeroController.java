@@ -20,8 +20,8 @@ import java.util.stream.StreamSupport;
 @RequestMapping("api/v1/anti-heroes")
 public class AntiHeroController {
 
-    private final AntiHeroService service;
-    private final ModelMapper mapper;
+    private AntiHeroService service;
+    private ModelMapper mapper;
 
     private AntiHeroDTO convertToDto(AntiHeroEntity entity) {
         return mapper.map(entity, AntiHeroDTO.class);
@@ -45,12 +45,16 @@ public class AntiHeroController {
     }
 
     @PutMapping("/{id}")
-    public void putAntiHero(@PathVariable("id") UUID id, @Valid @RequestBody AntiHeroDTO antiHeroDTO) {
-        if (!id.equals(antiHeroDTO.getId())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id does not match.");
-        }
+    public void putAntiHero(
+            @PathVariable("id") UUID id,
+            @Valid @RequestBody AntiHeroDTO antiHeroDto
+    ) {
+        if (!id.equals(antiHeroDto.getId())) throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "id does not match"
+        );
 
-        var antiHeroEntity = convertToEntity(antiHeroDTO);
+        var antiHeroEntity = convertToEntity(antiHeroDto);
         service.updateAntiHero(id, antiHeroEntity);
     }
 

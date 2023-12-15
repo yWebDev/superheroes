@@ -4,7 +4,6 @@ import com.example.superheroes.antiHero.entity.AntiHeroEntity;
 import com.example.superheroes.antiHero.repository.AntiHeroRepository;
 import com.example.superheroes.exception.NotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Service
 public class AntiHeroService {
-    private final AntiHeroRepository repo;
+    private AntiHeroRepository repo;
 
     public Iterable<AntiHeroEntity> findAllAntiHeroes() {
         return repo.findAll();
