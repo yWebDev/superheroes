@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.RedisHash;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Table(name = "anti_hero_entity")
 @AllArgsConstructor
 @NoArgsConstructor
+@RedisHash("AntoHero")
 public class AntiHeroEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "UUID")
