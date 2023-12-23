@@ -37,8 +37,8 @@ public class AntiHeroController {
     }
 
     @PostMapping
-    public AntiHeroDTO postAntiHero(@Valid @RequestBody AntiHeroDTO dto) {
-        var entity = convertToEntity(dto);
+    public AntiHeroDTO postAntiHero(@Valid @RequestBody AntiHeroDTO antiHeroDTO) {
+        var entity = convertToEntity(antiHeroDTO);
         var antiHero = service.addAntiHero(entity);
 
         return convertToDto(antiHero);

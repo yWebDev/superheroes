@@ -22,4 +22,20 @@ public class AntiHeroDTO {
     public UUID getId() {
         return id;
     }
+
+    public @NotNull String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public String getKnownAs() {
+        return knownAs;
+    }
 }
