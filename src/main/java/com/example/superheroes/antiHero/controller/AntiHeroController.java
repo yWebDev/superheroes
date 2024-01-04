@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.superheroes.antiHero.service.AntiHeroService;
 import org.springframework.web.server.ResponseStatusException;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -66,8 +67,12 @@ public class AntiHeroController {
     }
 
     @GetMapping
-    public List<AntiHeroDTO> getAntiHeroes() {
+    public List<AntiHeroDTO> getAntiHeroes(Pageable pageable) {
+        int toSkip = pageable.getPageSize() * pageable.getPageNumber();
+
         var antiHeroesList = StreamSupport.stream(service.findAllAntiHeroes().spliterator(), false)
+                .skip(toSkip)
+                .limit(pageable.getPageSize())
                 .collect(Collectors.toList());
         return antiHeroesList
                 .stream()
