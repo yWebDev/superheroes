@@ -11,12 +11,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-@Data
 @Entity
 @Table(name = "anti_hero_entity")
 @AllArgsConstructor
 @NoArgsConstructor
-@RedisHash("AntoHero")
 public class AntiHeroEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "UUID")
@@ -30,4 +28,48 @@ public class AntiHeroEntity {
     private String house;
     private String knownAs;
     private String createdAt = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setKnownAs(String knownAs) {
+        this.knownAs = knownAs;
+    }
+
+    public String getKnownAs() {
+        return knownAs;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
 }

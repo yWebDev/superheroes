@@ -4,14 +4,15 @@ import com.example.superheroes.antiHero.entity.AntiHeroEntity;
 import com.example.superheroes.antiHero.repository.AntiHeroRepository;
 import com.example.superheroes.exception.NotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
 @Service
 public class AntiHeroService {
+    @Autowired
     private AntiHeroRepository repo;
 
     public Iterable<AntiHeroEntity> findAllAntiHeroes() {

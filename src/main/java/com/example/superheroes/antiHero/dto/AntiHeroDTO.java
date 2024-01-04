@@ -26,16 +26,35 @@ public class AntiHeroDTO {
     public @NotNull String getFirstName() {
         return firstName;
     }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getLastName() {
         return lastName;
+    }
+
+    public void setKnownAs(String knownAs) {
+        this.knownAs = knownAs;
+    }
+
+    public String getKnownAs() {
+        return knownAs;
     }
 
     public String getHouse() {
         return house;
     }
 
-    public String getKnownAs() {
-        return knownAs;
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }
