@@ -26,8 +26,7 @@ public class CorsConfig {
                 "X-Requested-With",
                 "Access-Control-Request-Method",
                 "Access-Control-Request-Headers"
-                )
-        );
+        ));
         corsConfiguration.setExposedHeaders(List.of(
                 "Origin",
                 "Content-Type",
