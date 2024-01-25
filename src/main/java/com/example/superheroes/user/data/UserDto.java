@@ -16,4 +16,8 @@ public class UserDto {
     private String email;
     private String mobileNumber;
     private String password;
+
+    public String getPassword() {
+        return password;
+    }
 }
