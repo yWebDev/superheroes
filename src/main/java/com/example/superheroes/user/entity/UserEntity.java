@@ -1,14 +1,13 @@
 package com.example.superheroes.user.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserEntity {
@@ -39,6 +38,10 @@ public class UserEntity {
 
     public void setStoredSalt(byte[] storedSalt) {
         this.storedSalt = storedSalt;
+    }
+
+    public byte[] getStoredSalt() {
+        return this.storedSalt;
     }
 
     public byte[] getStoredHash() {
