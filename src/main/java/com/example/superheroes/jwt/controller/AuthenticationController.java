@@ -6,8 +6,8 @@ import com.example.superheroes.jwt.service.ApplicationUserDetailsService;
 import com.example.superheroes.jwt.util.JwtUtil;
 import com.example.superheroes.user.entity.UserEntity;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class AuthenticationController {
 
-    private AuthenticationManager authenticationManager;
     private JwtUtil jwtTokenUtil;
     private ApplicationUserDetailsService userDetailsService;
+
+    @Autowired
+    public void setJwtTokenUtil(JwtUtil jwtTokenUtil) {
+        this.jwtTokenUtil = jwtTokenUtil;
+    }
+
+    @Autowired
+    public void setApplicationUserDetailsService(ApplicationUserDetailsService applicationUserDetailsService) {
+        this.userDetailsService = applicationUserDetailsService;
+    }
 
     @RequestMapping(value = "/authenticate")
     @ResponseStatus(HttpStatus.CREATED)

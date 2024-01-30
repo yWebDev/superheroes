@@ -1,16 +1,19 @@
 package com.example.superheroes.jwt.model;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class AuthenticationResponse implements Serializable {
 
     public AuthenticationResponse(String token) {
-        token = token.trim();
+        this.token = token.trim();
     }
 
     private String token;

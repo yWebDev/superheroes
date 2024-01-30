@@ -19,12 +19,16 @@ import java.util.UUID;
 
 import static java.util.stream.Collectors.toList;
 
-@AllArgsConstructor
 @Service
 public class UserService {
 
     private UserRepository repo;
     private ModelMapper mapper;
+
+    public UserService(UserRepository repo, ModelMapper mapper) {
+        this.repo = repo;
+        this.mapper = mapper;
+    }
 
     public UserEntity searchByEmail(String email) {
         return repo.findByEmail(email);

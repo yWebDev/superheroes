@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
-@AllArgsConstructor
 @RestController
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/api/v1/users")
     public Iterable<UserDto> getUsers() {

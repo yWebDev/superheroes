@@ -8,8 +8,6 @@ import java.util.UUID;
 @Entity
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "UUID")
@@ -22,6 +20,9 @@ public class UserEntity {
     private String mobileNumber;
     private byte[] storedHash;
     private byte[] storedSalt;
+
+    public UserEntity() {
+    }
 
     public UserEntity(String email, String mobileNumber) {
         this.email = email;
