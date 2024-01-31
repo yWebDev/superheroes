@@ -4,7 +4,10 @@ import com.example.superheroes.antiHero.dto.AntiHeroDTO;
 import com.example.superheroes.antiHero.entity.AntiHeroEntity;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +21,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Slf4j
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/v1/anti-heroes")
@@ -27,6 +31,8 @@ public class AntiHeroController {
     @Autowired
     private AntiHeroService service;
     private final ModelMapper mapper = new ModelMapper();
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AntiHeroController.class);
 
     private AntiHeroDTO convertToDto(AntiHeroEntity entity) {
         return mapper.map(entity, AntiHeroDTO.class);
@@ -71,6 +77,12 @@ public class AntiHeroController {
     @GetMapping
     public List<AntiHeroDTO> getAntiHeroes(Pageable pageable) {
         int toSkip = pageable.getPageSize() * pageable.getPageNumber();
+
+        //SLF4J2
+        LOGGER.info("Useing SLF4J2: Getting anti hero list - getAntiHeroes()");
+
+        //LOMBOK SLF4j
+        log.info("Using SLF4J Lombok: Getting anti hero list - getAntiHeroes()");
 
         var antiHeroesList = StreamSupport.stream(service.findAllAntiHeroes().spliterator(), false)
                 .skip(toSkip)
