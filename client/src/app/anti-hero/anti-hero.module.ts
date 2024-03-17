@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 import { MaterialModule } from '../material/material.module';
 import { AntiHeroRoutingModule } from './anti-hero-routing.module';
 import { FormComponent } from './pages/form/form.component';
@@ -17,11 +19,13 @@ import { AntiHeroCommandBarComponent } from './components/anti-hero-command-bar/
     AntiHeroListComponent,
     AntiHeroCommandBarComponent
   ],
-  imports: [
-    CommonModule,
-    AntiHeroRoutingModule,
-    MaterialModule,
-  ]
+    imports: [
+        CommonModule,
+        AntiHeroRoutingModule,
+        MaterialModule,
+        MatCardModule,
+        ReactiveFormsModule,
+    ]
 })
 export class AntiHeroModule {
 }

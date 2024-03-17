@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AntiHero, TableActions } from '../../models/anti-hero.interface';
+import { Router } from '@angular/router';
+import { AntiHero, CommandBarActions, TableActions } from '../../models/anti-hero.interface';
 
 @Component({
   selector: 'app-list',
@@ -9,6 +10,7 @@ import { AntiHero, TableActions } from '../../models/anti-hero.interface';
 export class ListComponent implements OnInit {
   antiHeroes: AntiHero[] = [
     {
+      id: '1',
       firstName: 'Eddie',
       lastName: 'Brock',
       house: 'New York',
@@ -22,12 +24,28 @@ export class ListComponent implements OnInit {
     { headerName: 'Known As', fieldName: 'knownAs' },
   ];
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
   }
 
-  selectAntiHero(event: { antiHero: AntiHero; action: TableActions }) {
+  selectAntiHero(data: { antiHero: AntiHero; action: TableActions }) {
+    this.router.navigate(['anti-heroes', 'form', data.antiHero.id]);
+  }
+
+  executeCommandBarAction(action: CommandBarActions) {
+    switch(action) {
+      case CommandBarActions.Create: {
+        this.router.navigate(["anti-heroes", "form"]);
+        return;
+      }
+      case CommandBarActions.DeleteAll: {
+        return;
+
+      }
+      default: ""
+
+    }
   }
 }
