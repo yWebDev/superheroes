@@ -8,9 +8,11 @@ import { AntiHero, TableActions } from '../../models/anti-hero.interface';
 })
 export class AntiHeroListComponent implements OnInit {
   @Input() headers: Array<{ headerName: string, fieldName: keyof AntiHero }> = [];
-  @Input() antiHeroes: Array<AntiHero> = [];
+  @Input() antiHeroes: ReadonlyArray<AntiHero> = [];
   @Output() antiHero = new EventEmitter<{ antiHero: AntiHero, action: TableActions }>();
   headersFields: string[] = [];
+
+  protected readonly TableActions = TableActions;
 
   constructor() {
   }
@@ -27,4 +29,5 @@ export class AntiHeroListComponent implements OnInit {
     this.headersFields = this.headers.map(data => data.fieldName);
     this.headersFields.push('actions');
   }
+
 }

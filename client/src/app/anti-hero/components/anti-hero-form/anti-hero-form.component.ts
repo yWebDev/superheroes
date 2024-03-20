@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AntiHero } from '../../models/anti-hero.interface';
 
 @Component({
   selector: 'app-anti-hero-form',
@@ -7,10 +8,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./anti-hero-form.component.scss']
 })
 export class AntiHeroFormComponent implements OnInit {
-  @Input() selectedId: string | null = null;
   @Input() actionButtonLabel = 'Create';
+  @Input() selectedAntiHero?: AntiHero | null = null;
 
-  @Output() action = new EventEmitter();
+  @Output() action = new EventEmitter<{ value: AntiHero, action: string }>();
 
   form: FormGroup;
 
@@ -29,19 +30,19 @@ export class AntiHeroFormComponent implements OnInit {
   }
 
   checkAction() {
-    if(this.selectedId) {
+    if (this.selectedAntiHero) {
       this.actionButtonLabel = "Update";
       this.patchDataValues()
     }
   }
 
-  patchDataValues () {
+  patchDataValues() {
     //this will be implemented in the future (for update feature)
     // this.form.patchValue();
   }
 
   emitAction() {
-    this.action.emit({value: this.form.value, action: this.actionButtonLabel})
+    this.action.emit({ value: this.form.value, action: this.actionButtonLabel })
   }
 
   clear() {

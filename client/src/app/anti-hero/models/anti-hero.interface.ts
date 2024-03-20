@@ -7,9 +7,9 @@ export interface AntiHero {
 }
 
 export enum TableActions {
-
+  View,
+  Delete
 }
-
 
 export enum CommandBarActions {
   Create,

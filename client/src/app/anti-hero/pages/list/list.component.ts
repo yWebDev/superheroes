@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AntiHero, CommandBarActions, TableActions } from '../../models/anti-hero.interface';
-import { AntiHeroActions } from '../../state/anti-hero.actions';
+import {
+  getAntiHeroList,
+  removeAntiHeroApi,
+} from '../../state/anti-hero.actions';
 import { selectAntiHeroes } from '../../state/anti-hero.selectors';
 
 @Component({
@@ -33,7 +36,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch({ type: AntiHeroActions.GET_ANTI_HERO_LIST });
+    this.store.dispatch(getAntiHeroList());
     this.assignAntiHeroes();
   }
 
@@ -42,7 +45,16 @@ export class ListComponent implements OnInit {
   }
 
   selectAntiHero(data: { antiHero: AntiHero; action: TableActions }) {
-    this.router.navigate(['anti-heroes', 'form', data.antiHero.id]);
+    switch (data.action) {
+      case TableActions.View:
+        this.router.navigate(['anti-heroes', 'form', data.antiHero.id]);
+        return;
+      case TableActions.Delete:
+        this.store.dispatch(removeAntiHeroApi({ antiHeroId: data.antiHero.id }))
+        return;
+      default:
+        return;
+    }
   }
 
   executeCommandBarAction(action: CommandBarActions) {
