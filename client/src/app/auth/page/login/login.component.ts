@@ -9,6 +9,7 @@ import { AuthenticateService } from '../../../core/services/authenticate.service
 })
 export class LoginComponent {
   constructor(private authService: AuthenticateService, private router: Router) {
+    this.checkJWT();
   }
 
   submit(data: { email: string, password: string }) {
@@ -16,5 +17,11 @@ export class LoginComponent {
       this.router.navigate(['anti-heroes']);
       localStorage.setItem('token', data.token);
     });
+  }
+
+  private checkJWT(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/anti-heroes']);
+    }
   }
 }

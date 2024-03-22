@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'anti-heroes',
-    loadChildren: () => import('./anti-hero/anti-hero.module').then(m => m.AntiHeroModule)
+    loadChildren: () => import('./anti-hero/anti-hero.module').then(m => m.AntiHeroModule),
+    canMatch: [authGuard]
   }
 ];
 

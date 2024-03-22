@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { formGuard } from '../core/guards/form.guard';
 import { FormComponent } from './pages/form/form.component';
 import { ListComponent } from './pages/list/list.component';
 
@@ -13,11 +14,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: FormComponent
+        component: FormComponent,
+        canDeactivate: [formGuard]
       },
       {
         path: ':id',
-        component: FormComponent
+        component: FormComponent,
+        canDeactivate: [formGuard]
       }
     ]
   }
@@ -27,4 +30,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AntiHeroRoutingModule { }
+export class AntiHeroRoutingModule {
+}

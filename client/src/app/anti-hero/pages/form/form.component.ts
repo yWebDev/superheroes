@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { CanComponentDeactivate } from '../../../core/guards/form.guard';
 import { AntiHero } from '../../models/anti-hero.interface';
 import { addAntiHeroApi, modifyAntiHeroApi, modifyAntiHeroState } from '../../state/anti-hero.actions';
 import { selectAntiHero } from '../../state/anti-hero.selectors';
@@ -11,7 +12,7 @@ import { selectAntiHero } from '../../state/anti-hero.selectors';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent {
+export class FormComponent implements CanComponentDeactivate {
   antiHero$: Observable<AntiHero | undefined>;
 
   constructor(private route: ActivatedRoute, private store: Store) {
@@ -32,5 +33,10 @@ export class FormComponent {
       default:
         return;
     }
+  }
+
+  canDeactivate() {
+    const confirmation = window.confirm('Are you sure');
+    return confirmation;
   }
 }
