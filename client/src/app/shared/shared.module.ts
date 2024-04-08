@@ -12,7 +12,7 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
   ],
   exports: [
     NavbarComponent,

@@ -5,6 +5,6 @@ export interface CanComponentDeactivate {
   canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
 }
 
-export const formGuard: CanDeactivateFn<unknown> = (component, currentRoute, currentState, nextState) => {
+export const formGuard: CanDeactivateFn<CanComponentDeactivate> = (component, currentRoute, currentState, nextState) => {
   return component.canDeactivate ? component.canDeactivate() : true;
 };

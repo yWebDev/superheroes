@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, EMPTY, map, mergeMap, tap } from 'rxjs';
 import { AntiHero } from '../models/anti-hero.interface';
+import { AntiHeroService } from '../services/anti-hero.service';
 import { AntiHeroActions } from './anti-hero.actions';
 
 @Injectable()
@@ -14,7 +15,7 @@ export class AntiHeroEffects {
   ) {
   }
 
-  getAntiHeroes$ = createEffect(() => {
+  getAntiHeroes$ = createEffect<any>(() => {
     return this.actions$.pipe(
       ofType(AntiHeroActions.GET_ANTI_HERO_LIST),
       mergeMap(() => this.antiHeroService.getAntiHeroes().pipe(
@@ -22,9 +23,9 @@ export class AntiHeroEffects {
         catchError(() => EMPTY)
       ))
     )
-  }, { dispatch: true });
+  }, { dispatch: true, functional: true });
 
-  removeAntiHero$ = createEffect(() => {
+  removeAntiHero$ = createEffect<any>(() => {
     return this.actions$.pipe(
       ofType(AntiHeroActions.REMOVE_ANTI_HERO_API),
       mergeMap((data: { payload: string }) => this.antiHeroService.deleteAntiHero(data.payload).pipe(
@@ -35,9 +36,9 @@ export class AntiHeroEffects {
         catchError(() => EMPTY)
       ))
     )
-  }, { dispatch: true });
+  }, { dispatch: true, functional: true });
 
-  addAntiHero$ = createEffect(() => {
+  addAntiHero$ = createEffect<any>(() => {
     return this.actions$.pipe(
       ofType(AntiHeroActions.ADD_ANTI_HERO_API),
       mergeMap((data: { payload: AntiHero }) => this.antiHeroService.addAntiHero(data.payload).pipe(
@@ -49,19 +50,19 @@ export class AntiHeroEffects {
         catchError(() => EMPTY)
       ))
     )
-  }, { dispatch: true });
+  }, { dispatch: true, functional: true });
 
-  modifyAntiHero$ = createEffect(() => {
+  modifyAntiHero$ = createEffect<any>(() => {
     return this.actions$.pipe(
       ofType(AntiHeroActions.MODIFY_ANTI_HERO_API),
-      mergeMap((data: { payload: AntiHero }) => this.antiHeroService.updateAntiHero(data.payload).pipe(
-        map(() => ({
+      mergeMap((data: { payload: AntiHero }) => this.antiHeroService.updateAntiHero(data.payload.id, data.payload).pipe(
+        map((data: AntiHero) => ({
           type: AntiHeroActions.MODIFY_ANTI_HERO_STATE,
-          antiHero: data.payload
+          antiHero: data
         })),
         tap(() => this.router.navigate(['anti-heroes'])),
         catchError(() => EMPTY)
       ))
     )
-  }, { dispatch: true });
+  }, { dispatch: true, functional: true });
 }
