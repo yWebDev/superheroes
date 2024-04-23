@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommandBarActions } from '../../models/anti-hero.interface';
 
 @Component({
@@ -9,7 +10,7 @@ import { CommandBarActions } from '../../models/anti-hero.interface';
 export class AntiHeroCommandBarComponent implements OnInit {
   @Output() action = new EventEmitter<CommandBarActions>();
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -17,5 +18,10 @@ export class AntiHeroCommandBarComponent implements OnInit {
 
   emitAction(action: CommandBarActions) {
     this.action.emit(action);
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/login').then();
   }
 }

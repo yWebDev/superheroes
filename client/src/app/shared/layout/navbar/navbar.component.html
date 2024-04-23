@@ -1,9 +1,10 @@
 <p>
   <mat-toolbar color="primary">
-    <span>Angular CRUD</span>
+    <span data-cy="logo">Angular CRUD</span>
     <span class="example-spacer"></span>
-    <button *ngIf="loggedIn" (click)="submit('logout')">
-      <mat-icon>logout</mat-icon>
+
+    <button *ngIf="loggedIn" mat-raised-button color="warn" (click)="submit('logout')" data-cy="logout">
+      <mat-icon>logout</mat-icon> logout
     </button>
   </mat-toolbar>
 </p>

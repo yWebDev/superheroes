@@ -28,10 +28,10 @@ export class AntiHeroEffects {
   removeAntiHero$ = createEffect<any>(() => {
     return this.actions$.pipe(
       ofType(AntiHeroActions.REMOVE_ANTI_HERO_API),
-      mergeMap((data: { payload: string }) => this.antiHeroService.deleteAntiHero(data.payload).pipe(
+      mergeMap((data: { antiHeroId: string }) => this.antiHeroService.deleteAntiHero(data.antiHeroId).pipe(
         map(() => ({
           type: AntiHeroActions.REMOVE_ANTI_HERO_STATE,
-          antiHeroId: data.payload
+          antiHeroId: data.antiHeroId
         })),
         catchError(() => EMPTY)
       ))
@@ -41,10 +41,10 @@ export class AntiHeroEffects {
   addAntiHero$ = createEffect<any>(() => {
     return this.actions$.pipe(
       ofType(AntiHeroActions.ADD_ANTI_HERO_API),
-      mergeMap((data: { payload: AntiHero }) => this.antiHeroService.addAntiHero(data.payload).pipe(
+      mergeMap((data: { antiHero: AntiHero }) => this.antiHeroService.addAntiHero(data.antiHero).pipe(
         map(() => ({
           type: AntiHeroActions.ADD_ANTI_HERO_STATE,
-          antiHero: data.payload
+          antiHero: data.antiHero
         })),
         tap(() => this.router.navigate(['anti-heroes'])),
         catchError(() => EMPTY)
@@ -55,7 +55,7 @@ export class AntiHeroEffects {
   modifyAntiHero$ = createEffect<any>(() => {
     return this.actions$.pipe(
       ofType(AntiHeroActions.MODIFY_ANTI_HERO_API),
-      mergeMap((data: { payload: AntiHero }) => this.antiHeroService.updateAntiHero(data.payload.id, data.payload).pipe(
+      mergeMap((data: { antiHero: AntiHero }) => this.antiHeroService.updateAntiHero(data.antiHero.id, data.antiHero).pipe(
         map((data: AntiHero) => ({
           type: AntiHeroActions.MODIFY_ANTI_HERO_STATE,
           antiHero: data

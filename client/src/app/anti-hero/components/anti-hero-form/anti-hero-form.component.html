@@ -3,31 +3,31 @@
   <form class="anti-hero-form" [formGroup]="form">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName"
+      <input data-cy="firstName" matInput formControlName="firstName"
              placeholder="Ex. Tony">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName"
+      <input data-cy="lastName" matInput formControlName="lastName"
              placeholder="Ex. Stark">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>House</mat-label>
-      <input matInput formControlName="house"
+      <input data-cy="house" matInput formControlName="house"
              placeholder="Ex. California">
     </mat-form-field>
 
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Known As</mat-label>
-      <input matInput formControlName="knownAs"
+      <input data-cy="knownAs" matInput formControlName="knownAs"
              placeholder="Ex. Iron Man">
     </mat-form-field>
     <div class="button-group">
 
-      <button mat-raised-button color="primary" (click)="emitAction()">
+      <button data-cy="action" mat-raised-button color="primary" (click)="emitAction()">
         {{actionButtonLabel}}
       </button>
       &nbsp;

@@ -35,7 +35,7 @@ public class UserController {
         userService.removeUserByid(id);
     }
 
-    @PostMapping("/register")
+    @PostMapping("api/v1/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto postUser(@Valid @RequestBody UserDto userDto) throws NoSuchAlgorithmException, BadRequestException {
         return userService.createUser(userDto, userDto.getPassword());

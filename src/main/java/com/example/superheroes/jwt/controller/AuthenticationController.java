@@ -31,7 +31,7 @@ public class AuthenticationController {
         this.userDetailsService = applicationUserDetailsService;
     }
 
-    @RequestMapping(value = "/authenticate")
+    @RequestMapping(value = "api/v1/authenticate")
     @ResponseStatus(HttpStatus.CREATED)
     public AuthenticationResponse authenticate(@RequestBody AuthenticationRequest req) throws Exception {
         UserEntity user;

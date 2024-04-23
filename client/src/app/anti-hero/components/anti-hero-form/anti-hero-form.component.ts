@@ -21,7 +21,7 @@ export class AntiHeroFormComponent implements OnInit {
       firstName: [''],
       lastName: [''],
       house: [''],
-      knownAS: ['']
+      knownAs: ['']
     });
   }
 

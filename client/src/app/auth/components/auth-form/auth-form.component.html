@@ -7,18 +7,18 @@
       </p>
       <p>
         <mat-form-field>
-          <input type="text" matInput placeholder="Username" formControlName="email">
+          <input data-cy="email" type="text" matInput placeholder="Username" formControlName="email">
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field>
-          <input type="password" matInput placeholder="Password" formControlName="password">
+          <input data-cy="password" type="password" matInput placeholder="Password" formControlName="password">
         </mat-form-field>
       </p>
 
       <div class="button">
-        <button type="submit" mat-button>{{title}}</button>
+        <button data-cy="submit-login" type="submit" mat-button>{{title}}</button>
       </div>
       <p *ngIf="title == 'Login'" class="link" [routerLink]="['register']" routerLinkActive="router-link-active" >Create account</p>
       <p *ngIf="title == 'Register'" class="link" [routerLink]="['']" routerLinkActive="router-link-active" >Sign In</p>

@@ -69,7 +69,8 @@
               "browserTarget": "superheroes:build:production"
             },
             "development": {
-              "browserTarget": "superheroes:build:development"
+              "browserTarget": "superheroes:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

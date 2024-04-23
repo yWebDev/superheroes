@@ -12,7 +12,6 @@ export class AuthEffects {
   }
 
   loginUser$ = createEffect(() => this.actions$.pipe(
-    tap(t => console.log(t)),
     ofType(AuthActions.LOGIN),
     mergeMap((data: { type: string, payload: User }) => this.authService.login(data.payload).pipe(
         map((data) => ({ ...data, type: AuthActions.SET_TOKEN, token: data.token })),

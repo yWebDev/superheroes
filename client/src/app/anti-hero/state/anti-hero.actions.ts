@@ -26,7 +26,7 @@ export const removeAntiHeroApi = createAction(AntiHeroActions.REMOVE_ANTI_HERO_A
 
 export const addAntiHeroState = createAction(AntiHeroActions.ADD_ANTI_HERO_STATE, props<{ antiHero: AntiHero }>());
 
-export const addAntiHeroApi = createAction(AntiHeroActions.ADD_ANTI_HERO_STATE, props<{ antiHero: AntiHero }>());
+export const addAntiHeroApi = createAction(AntiHeroActions.ADD_ANTI_HERO_API, props<{ antiHero: AntiHero }>());
 
 export const modifyAntiHeroState = createAction(AntiHeroActions.MODIFY_ANTI_HERO_STATE, props<{
   antiHero: AntiHero
